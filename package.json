@@ -41,5 +41,9 @@
     "typescript": "5.0.4",
     "world-countries": "^4.0.0",
     "zustand": "^4.3.7"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "prisma": "^4.13.0"
   }
 }

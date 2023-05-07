@@ -1,17 +1,19 @@
 'use client' ;
 import Image from 'next/image';
 import avatar from 'public/avatar.png';
-import {RxAvatar} from 'react-icons/rx'
-function Avatar() {
+import {RxAvatar} from 'react-icons/rx';
+interface AvatarProps {
+    src: string | null | undefined;
+}
+const Avatar:React.FC<AvatarProps> = ({src}) => {
   return (
-    <RxAvatar className='h-7 w-7'/>
-   /*  <Image
+    <Image
     className='rounded-full'
     height='30'
     width='30'
     alt='Avatar'
-    src={avatar}
-    /> */
+    src={src || avatar}
+    />
   )
 }
 
