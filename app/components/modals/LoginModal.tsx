@@ -50,10 +50,15 @@ const LoginModal = () => {
     });
   };
 
-  const signInWithGoogle = () => {
-    toast.success('succcessful signed in with Google');
+/*   const signInWithGoogle = async() => {
+   const result  = await signIn('google');
+   if(result?.error){
+      toast.error('Error signing in with Google');
+   } else {
+     toast.success('succcessful signed in with Google');
      loginModal.onClose();
-  }
+   }
+  } */
   const signInWithGithub = () => {
     toast.success('succcessful signed in with Github');
     loginModal.onClose();
@@ -76,7 +81,7 @@ const LoginModal = () => {
       />
       <Input
         id="password"
-        label="Passowrd"
+        label="Password"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -91,7 +96,7 @@ const LoginModal = () => {
         outline 
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={signInWithGoogle} 
+        onClick={() => signIn('google')} 
       />
       <Button 
         outline 

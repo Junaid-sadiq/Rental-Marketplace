@@ -126,7 +126,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
               />
               <hr />
               <MenuItem 
-                label="Logout" 
+                label="Log out" 
                 onClick={logOut}
               />
             </>
