@@ -1,24 +1,24 @@
-'use client'
-import { useState } from "react"; 
-import { SafeUser } from "@/app/types";
-import Container from "../Container";
-import Logo from "./Logo";
-import Menu from "./Menu";
-import Search from "./Search";
-import ToggleSwitch from "../ToggleSwitch";
-import Categories from "./Categories";
+'use client';
+import { useState } from 'react';
+import { SafeUser } from '@/app/types';
+import Container from '../Container';
+import Logo from './Logo';
+import Menu from './Menu';
+import Search from './Search';
+import ToggleSwitch from '../ToggleSwitch';
+import Categories from './Categories';
 interface NavbarProps {
-    currentUser?: SafeUser | null;
+  currentUser?: SafeUser | null;
 }
-const Navbar:React.FC<NavbarProps> = ({currentUser}) => {
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const [darkMode, setDarkMode] = useState(false);
-  console.log('darkmode:', darkMode)
+  console.log('darkmode:', darkMode);
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
         <Container>
-        <div 
-          className="
+          <div
+            className="
             flex 
             flex-row 
             items-center 
@@ -27,22 +27,21 @@ const Navbar:React.FC<NavbarProps> = ({currentUser}) => {
             md:gap-0
             bg-white dark:bg-black
           "
-        >
-                <Logo/>
-                <Search/>
-                <Menu currentUser={currentUser}/>
-              {/*   <ToggleSwitch
+          >
+            <Logo />
+            <Search />
+            <Menu currentUser={currentUser} />
+            {/*   <ToggleSwitch
                   label="Dark Mode"
                   value={darkMode}
                   setvalue={setDarkMode}
                 /> */}
-            </div>
-       </Container>
+          </div>
+        </Container>
       </div>
-            <Categories/>
+      <Categories />
     </div>
   );
-}
-
+};
 
 export default Navbar;

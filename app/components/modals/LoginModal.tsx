@@ -59,10 +59,10 @@ const LoginModal = () => {
      loginModal.onClose();
    }
   } */
-  const signInWithGithub = () => {
+/*   const signInWithGithub = () => {
     toast.success('succcessful signed in with Github');
     loginModal.onClose();
-  }
+  } */
   const onToggle = useCallback(() => {
       loginModal.onClose();
     registerModal.onOpen();

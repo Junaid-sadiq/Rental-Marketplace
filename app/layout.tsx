@@ -8,10 +8,11 @@ import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import { ThemeProvider } from "./providers/ThemeContext";
+import RentModal from "./components/modals/RentModal";
 
 export const metadata = {
-  title: "Rentals",
-  description: "Rentals: unified place to find the best rentals in your area",
+  title: "Realtor",
+  description: "Realtor: unified place to find the best rentals in your area",
 };
 
 const font = Nunito({ subsets: ["latin"] });
@@ -30,6 +31,7 @@ export default async function RootLayout({
           <ToasterProvider/>
           <LoginModal/>
           <RegisterModal />
+          <RentModal/>
           <Navbar currentUser={currentUser} />
           {children}
         </ClientOnly>
