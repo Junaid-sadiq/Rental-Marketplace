@@ -1,25 +1,25 @@
-'use client'
+'use client';
 import countries from 'world-countries';
- 
+
 const formatedCountries = countries.map((country) => ({
-    value: country.cca2,
-    label: country.name.common,
-    flag: country.flag,
-    latlng: country.latlng,
-    region: country.region,
+  value: country.cca2,
+  label: country.name.common,
+  flag: country.flag,
+  latlng: country.latlng,
+  region: country.region,
 }));
 
 const useCountries = () => {
-    const getAll = () => formatedCountries;
+  const getAll = () => formatedCountries;
 
-    const getByValue = (value: string) => {
-        return formatedCountries.find((item) => item.value === value) 
-    }
+  const getByValue = (value: string) => {
+    return formatedCountries.find((item) => item.value === value);
+  };
 
-    return {
-        getAll,
-        getByValue
-}
+  return {
+    getAll,
+    getByValue,
+  };
 };
 
-export default useCountries 
+export default useCountries;
