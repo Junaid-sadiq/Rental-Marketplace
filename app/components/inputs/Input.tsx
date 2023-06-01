@@ -30,6 +30,7 @@ const Input: React.FC<InputProps> = ({
           size={24}
           className="
             text-neutral-700
+            dark:text-gray-100
             absolute
             top-5
             left-2
@@ -48,7 +49,7 @@ const Input: React.FC<InputProps> = ({
           p-4
           pt-6 
           font-light 
-          bg-white 
+          bg-white
           dark:bg-zinc-700
           border-2
           dark:border-zinc-600

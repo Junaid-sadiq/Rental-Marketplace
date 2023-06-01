@@ -2,6 +2,8 @@
 import Select from 'react-select';
 
 import useCountries from '@/app/hooks/useCountries';
+import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 export type CountrySelectValue = {
   flag: string;
@@ -17,6 +19,34 @@ interface CountrySelectProps {
 }
 const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
   const { getAll } = useCountries();
+  const { systemTheme, theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const isDarkMode = currentTheme === 'dark';
+
+  const customStyles = {
+    control: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: isDarkMode ? 'black': 'white',
+      borderColor: state.isSelected || state.isFocused ? '#c5c5c5' : provided.borderColor,
+    }),
+    input: (provided: any) => ({
+      ...provided,
+      color: isDarkMode ? 'white' : 'black',
+      fontSize: '1.125rem', // adjust as needed
+    }),
+    option: (provided: any) => ({
+      ...provided,
+      color: isDarkMode ? 'white' : 'black',
+      fontSize: '1.125rem', // adjust as needed
+    }),
+  };
   return (
     <div>
       <Select
@@ -43,15 +73,16 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
             option: () => 'text-lg',
 
         }}
-        theme={(theme) => ({
+        styles={customStyles}
+      /*   theme={(theme) => ({
             ...theme,
             borderRadius: 6,
             colors: {
                 ...theme.colors,
                 primary: 'black',
-                primary25: '#ffe4e6'
+                primary25: '#c5c5c5'
             }
-        })}
+        })} */
       />
     </div>
   );
