@@ -45,11 +45,12 @@ function RentModal() {
     },
   });
 
-  const category = watch('category');
   const location = watch('location');
-  const guestCount = watch('guest');
-  const roomCount = watch('room');
-  const bathroomsCount = watch('bathroom');
+  const category = watch('category');
+  const guestCount = watch('guestCount');
+  const roomCount = watch('roomCount');
+  const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
 
   const Map = useMemo(
     () =>
@@ -128,28 +129,28 @@ function RentModal() {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Share your basics information about your place "
-          subtitle="What amenities do you have?"
+          title="Share some basics about your place"
+          subtitle="What amenitis do you have?"
         />
-        <Counter 
-          title="Guests" 
-          subtitle="How many guests do you allow?"
+        <Counter
           onChange={(value) => setCustomValue('guestCount', value)}
           value={guestCount}
+          title="Guests"
+          subtitle="How many guests do you allow?"
         />
         <hr />
-        <Counter 
-          title="Guests" 
-          subtitle="How many rooms do you have?"
+        <Counter
           onChange={(value) => setCustomValue('roomCount', value)}
           value={roomCount}
+          title="Rooms"
+          subtitle="How many rooms do you have?"
         />
         <hr />
-        <Counter 
-          title="Bathrooms" 
+        <Counter
+          onChange={(value) => setCustomValue('bathroomCount', value)}
+          value={bathroomCount}
+          title="Bathrooms"
           subtitle="How many bathrooms do you have?"
-          onChange={(value) => setCustomValue('bathroomsCount', value)}
-          value={bathroomsCount}
         />
       </div>
     );

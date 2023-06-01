@@ -7,7 +7,7 @@ import Navbar from "./components/navbar/Navbar";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
-import { ThemeProvider } from "./providers/ThemeContext";
+import { ThemeProvider, useTheme } from "next-themes"
 import RentModal from "./components/modals/RentModal";
 
 export const metadata = {
@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-      {/*   <ThemeProvider> */}
+        <ThemeProvider attribute="class">
         <ClientOnly>
           <ToasterProvider/>
           <LoginModal/>
@@ -35,7 +35,7 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} />
           {children}
         </ClientOnly>
-      {/*   </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -49,7 +49,9 @@ const Input: React.FC<InputProps> = ({
           pt-6 
           font-light 
           bg-white 
+          dark:bg-zinc-700
           border-2
+          dark:border-zinc-600
           rounded-md
           outline-none
           transition
@@ -75,7 +77,7 @@ const Input: React.FC<InputProps> = ({
            peer-placeholder-shown:translate-y-0 
            peer-focus:scale-75
            peer-focus:-translate-y-4
-           ${errors[id] ? 'text-rose-500' : 'text-neutral-700'}
+           ${errors[id] ? 'text-rose-500' : 'text-neutral-700 dark:text-gray-100'}
            `}
       >
         {label}

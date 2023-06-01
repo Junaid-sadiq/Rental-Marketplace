@@ -58,6 +58,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           px-4 
           rounded-full 
           hover:bg-neutral-100 
+          dark:text-gray-400
           transition 
           cursor-pointer
         "
@@ -71,7 +72,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         md:py-1
         md:px-2
         border-[1px] 
-        border-neutral-200 
+        border-neutral-200
+        dark:border-gray-600 
         flex 
         flex-row 
         items-center 
@@ -82,7 +84,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         transition
         "
       >
-        <CiMenuFries className='w-5 h-5' />
+        <CiMenuFries className='w-5 h-5 dark:text-gray-200' />
         <div className="hidden md:block">
             {currentUser ?  
             <Avatar src={currentUser?.image} /> 
@@ -101,10 +103,12 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           w-[40vw]
           md:w-3/4 
           bg-white 
+          dark:bg-zinc-800
           overflow-hidden 
           right-0 
           top-12 
           text-sm
+
         "
       >
         <div className="flex flex-col cursor-pointer">

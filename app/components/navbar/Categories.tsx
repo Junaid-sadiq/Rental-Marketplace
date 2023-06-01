@@ -1,15 +1,12 @@
 'use client';
-import { TbBeach, TbBuildingCastle, TbMountain, TbPool, TbWindmill } from 'react-icons/tb';
+import { TbBeach, TbBuildingCastle, TbMountain, TbWindmill } from 'react-icons/tb';
 import {
   GiBarn,
   GiBoatFishing,
   GiCactus,
-  GiCastle,
-  GiCaveEntrance,
   GiForestCamp,
   GiIsland,
   GiMountainCave,
-  GiWindmill,
 
 } from 'react-icons/gi';
 import { FaSkiing } from 'react-icons/fa';
@@ -121,6 +118,7 @@ const Categories: React.FC<CategoriesProps> = () => {
           items-center 
           justify-between
           overflow-x-auto
+          dark:bg-zinc-900
   `}
       >
         {categories.map((item) => (

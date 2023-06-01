@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { IconType } from 'react-icons/lib';
 import qs from 'query-string';
+import { useTheme } from 'next-themes';
 
 interface CategoryBoxProps {
   label: string;
@@ -15,6 +16,8 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
   icon: Icon,
   label,
 }) => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  const currentTheme = theme === 'system' ? systemTheme : theme;
   const router = useRouter();
   const params = useSearchParams();
 
@@ -52,16 +55,17 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       p-3
       border-b-2
       hover:text-neutral-800
+      dark:hover:text-grey-900
       transition
       cursor-pointer
       scroll-smooth 
       hover:scroll-auto
-      ${selected ? 'border-b-neutral-800' : 'border-transparent'}
+      ${selected  ? 'border-b-neutral-400' : 'border-transparent'}
       ${selected ? 'text-neutral-800' : 'text-neutral-500'}
-    `}
-    >
-      <Icon size={26} />
-      <div className={`font-medium tex-sm`}>
+      `}
+      >
+      <Icon className='dark:text-neutral-300' size={26} />
+      <div className={`dark:text-neutral-300 font-medium tex-sm`}>
         {label}
       </div>
     </div>

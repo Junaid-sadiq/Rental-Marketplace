@@ -107,6 +107,7 @@ const LoginModal = () => {
       <div 
         className="
           text-neutral-500 
+          dark:text-zinc-500
           text-center 
           mt-4 
           font-light
@@ -117,6 +118,7 @@ const LoginModal = () => {
             onClick={onToggle} 
             className="
               text-neutral-800
+              dark:text-zinc-400
               cursor-pointer 
               hover:underline
             "
