@@ -11,6 +11,7 @@ import Menu from './Menu';
 import Search from './Search';
 import ToggleSwitch from '../ToggleSwitch';
 import Categories from './Categories';
+import DarkModeBtn from '../DarkModeBtn';
 interface NavbarProps {
   currentUser?: SafeUser | null;
 }
@@ -44,13 +45,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           >
             <Logo />
             <Search />
+         {/*    <DarkModeBtn /> */}
             <Menu currentUser={currentUser} />
-            {/* <button
-              className={`bg-${currentTheme === 'dark' ? 'black' : 'gray'}-700 w-8 rounded-full border-grey-50 border-2 p-2 hover:bg-${currentTheme === 'dark' ? 'white' : 'gray'}-300`}
-              onClick={() => setTheme(currentTheme === 'dark' ? 'light' : 'dark')}
-            >
-              {currentTheme === 'dark' ? <BsSun /> : <BsFillMoonStarsFill />}
-            </button> */}
+            
           </div>
         </Container>
       </div>

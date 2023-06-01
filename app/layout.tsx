@@ -1,5 +1,4 @@
 import "./globals.css";
-import { ThemeProvider, useTheme } from "next-themes";
 import { Nunito } from "next/font/google";
 
 import ClientOnly from "./components/ClientOnly";
@@ -9,7 +8,7 @@ import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "./components/modals/RentModal";
-/* import useTheme from './hooks/useTheme'; */
+import Provider from './hooks/Provider';
 
 export const metadata = {
   title: "Realtor",
@@ -28,7 +27,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-      <ThemeProvider enableSystem={true} attribute="class">
+      <Provider>
         <ClientOnly>
           <ToasterProvider/>
           <LoginModal/>
@@ -37,7 +36,7 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} />
           {children}
         </ClientOnly>
-        </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );

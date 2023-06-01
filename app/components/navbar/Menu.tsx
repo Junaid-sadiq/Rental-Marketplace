@@ -13,6 +13,7 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import useRentModal from '@/app/hooks/useRentModal';
 import { SafeUser } from '@/app/types';
+import DarkModeBtn from '../DarkModeBtn';
 
 interface MenuProps {
   currentUser?: SafeUser | null;
@@ -101,7 +102,9 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             )}
           </div>
         </div>
+      <DarkModeBtn />
       </div>
+
       {isOpen && (
         <div
           className="
