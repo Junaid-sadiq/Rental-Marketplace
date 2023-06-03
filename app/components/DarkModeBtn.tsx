@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { BsMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
+import { BsMoonStarsFill, BsFillSunFill, BsLightbulb, BsFillLightbulbFill, BsLightbulbOff } from 'react-icons/bs';
 
 const DarkModeBtn = () => {
   const [mounted, setMounted] = useState(false);
@@ -24,7 +24,7 @@ const DarkModeBtn = () => {
   return (
     <div
       className={`relative flex items-center justify-between p-2 rounded-full cursor-pointer ${
-        isDarkMode ? 'bg-blue-200 text-blue-600' : 'bg-yellow-200 text-yellow-600'
+        isDarkMode ? 'bg-blue-300 text-blue-900' : 'bg-yellow-100 text-yellow-900'
       }`}
       onClick={handleThemeToggle}
     >
@@ -32,7 +32,7 @@ const DarkModeBtn = () => {
         {isDarkMode ? (
           <BsMoonStarsFill size={18} />
         ) : (
-          <BsFillSunFill size={18} />
+          <BsFillSunFill size={22} />
         )}
       </div>
     </div>

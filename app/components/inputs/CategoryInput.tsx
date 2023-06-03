@@ -26,21 +26,22 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
                 flex-col
                 gap-3
                 hover:border-black
-                dark:border-gray-400
-                dark:hover:border-gray-100
+                dark:border-neutral-400
+                dark:hover:border-neutral-100
                 transition
                 cursor-pointer
                 ${
                   selected
                     ? 'border-black dark:border-white'
-                    : 'border-neutral-200'
+                    : 'border-neutral-500'
                 }
             `}
     >
       <div
-        className={`dark:text-gray-400
-             dark:hover:text-gray-100
-             ${selected ? 'text-black dark:text-white' : 'text-neutral-200'}
+        className={`dark:text-neutral-400
+             dark:hover:text-neutral-100
+               hover:text-neutral-800
+             ${selected ? 'text-black dark:text-white' : 'text-neutral-500'}
                `}
       >
         <Icon size={30} />

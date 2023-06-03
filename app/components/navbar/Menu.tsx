@@ -47,7 +47,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
 
   return (
     <div className="relative">
-      <div className="flex flex-row items-center gap-3">
+      <div className="flex flex-row items-center gap-4">
         <div
           onClick={onPressRent}
           className="

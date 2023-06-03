@@ -33,8 +33,10 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
   const customStyles = {
     control: (provided: any, state: any) => ({
       ...provided,
-      backgroundColor: isDarkMode ? 'black': 'white',
-      borderColor: state.isSelected || state.isFocused ? '#c5c5c5' : provided.borderColor,
+      backgroundColor: isDarkMode ? 'black' : 'white',
+      borderColor: state.isSelected || state.isFocused ? (isDarkMode ? 'white' : '#c5c5c5') : provided.borderColor,
+      outline: 'none', // Remove outline on focus
+      boxShadow: state.isFocused ? 'none' : provided.boxShadow, // Remove box shadow on focus
     }),
     input: (provided: any) => ({
       ...provided,
@@ -45,6 +47,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
       ...provided,
       color: isDarkMode ? 'white' : 'black',
       fontSize: '1.125rem', // adjust as needed
+      backgroundColor: isDarkMode ? 'black': 'white',
     }),
   };
   return (
