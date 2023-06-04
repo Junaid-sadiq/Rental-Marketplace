@@ -4,8 +4,8 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import lightLogo from 'public/Realtor.png';
-import darkLogo from 'public/logo-light.png';
+import lightLogo from 'public/dark.png';
+import darkLogo from 'public/light.png';
 
 const Logo = () => {
     const { systemTheme, theme } = useTheme();

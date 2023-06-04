@@ -32,7 +32,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
                 cursor-pointer
                 ${
                   selected
-                    ? 'border-black dark:border-white'
+                    ? 'border-black dark:border-neutral-100'
                     : 'border-neutral-500'
                 }
             `}
@@ -41,7 +41,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         className={`dark:text-neutral-400
              dark:hover:text-neutral-100
                hover:text-neutral-800
-             ${selected ? 'text-black dark:text-white' : 'text-neutral-500'}
+             ${selected ? 'text-black dark:text-neutral-100' : 'text-neutral-500'}
                `}
       >
         <Icon size={30} />
