@@ -51,7 +51,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
                 listingId={id}
                 currentUser={currentUser}
             />
-            <div className="grid grid-cols-1 md:grid-cols-7
+           {/*  <div className="grid grid-cols-1 md:grid-cols-7
             md:gap-10 mt-6">
                 <ListingInfo
                     user={listing.user}
@@ -64,7 +64,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
 
 
                 />
-            </div>
+            </div> */}
         </div>
     </div>
     </>
