@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { IconType } from 'react-icons/lib';
 import qs from 'query-string';
@@ -10,16 +10,16 @@ interface CategoryBoxProps {
   selected?: boolean;
 }
 
-
 const CategoryBox: React.FC<CategoryBoxProps> = ({
   selected,
   icon: Icon,
   label,
 }) => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
   const router = useRouter();
   const params = useSearchParams();
+  const { systemTheme, theme, setTheme } = useTheme();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const currentTheme = theme === 'system' ? systemTheme : theme;
 
   const handleClick = useCallback(() => {
     let currentQuery = {};
@@ -46,6 +46,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
   return (
     <div
       onClick={handleClick}
+      ref={containerRef}
       className={`
       flex 
       flex-col 
@@ -60,14 +61,12 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       cursor-pointer
       scroll-smooth 
       hover:scroll-auto
-      ${selected  ? 'border-b-neutral-400' : 'border-transparent'}
+      ${selected ? 'border-b-neutral-400' : 'border-transparent'}
       ${selected ? 'text-neutral-800' : 'text-neutral-500'}
       `}
-      >
-      <Icon className='dark:text-neutral-300' size={26} />
-      <div className={`dark:text-neutral-300 font-medium tex-sm`}>
-        {label}
-      </div>
+    >
+      <Icon className="dark:text-neutral-300" size={26} />
+      <div className={`dark:text-neutral-300 font-medium tex-sm`}>{label}</div>
     </div>
   );
 };

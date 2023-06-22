@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect, useRef } from 'react';
 import { User } from '@prisma/client';
 import { CiMenuFries } from 'react-icons/ci';
 import { signOut } from 'next-auth/react';
@@ -21,9 +21,28 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
+
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+  
+    document.addEventListener('click', handleClickOutside);
+  
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -46,7 +65,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   };
 
   return (
-    <div className="relative">
+    <div ref={menuRef} className="relative">
       <div className="flex flex-row items-center gap-4">
         <div
           onClick={onPressRent}
@@ -102,7 +121,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             )}
           </div>
         </div>
-      <DarkModeBtn />
+        <DarkModeBtn />
       </div>
 
       {isOpen && (
