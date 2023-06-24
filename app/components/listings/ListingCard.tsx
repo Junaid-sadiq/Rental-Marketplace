@@ -3,8 +3,8 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
-
 import Image from "next/image";
+
 import { Listing, Reservation } from "@prisma/client";
 import { SafeListing, SafeUser, } from "@/app/types";
 import useCountries from "@/app/hooks/useCountries";
