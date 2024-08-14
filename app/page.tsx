@@ -1,4 +1,4 @@
-import { getCurrentUser } from "./actions/getCurrentUser";
+import getCurrentUser from "./actions/getCurrentUser";
 import getListings from "./actions/getListings";
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
@@ -29,6 +29,7 @@ export default async function Home() {
                  xl:grid-cols-5
                  2xl:grid-cols-6
                  gap-8
+                 dark:bg-black
         ">
            {listings.map((listing) => (
             <ListingCard

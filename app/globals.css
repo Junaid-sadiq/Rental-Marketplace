@@ -19,7 +19,32 @@ body,
   width: 100% !important;
 }
 
-.rdrCalenderWrapper {
+.rdrCalendarWrapper {
   width: 100% !important;
+  height: 100%;
   font-size: 16px !important;
+}
+
+
+/* Adjust color for months in dark mode */
+.dark .rdrMonths .rdrMonth:not(.rdrDayPassive) {
+  color: #fff; /* Change month text color */
+}
+
+/* Adjust color for month picker toggle menu in dark mode */
+.dark .rdrMonths .rdrMonthPicker {
+  background-color: #000; /* Change background color */
+}
+
+.dark .rdrMonths .rdrMonthPicker label {
+  color: #ccc; /* Change label text color */
+}
+
+/* Adjust color for the list of months in dark mode */
+.dark .rdrMonths .rdrMonthPicker .rdrMonths {
+  background-color: #000; /* Change background color */
+}
+
+.dark .rdrMonths .rdrMonthPicker .rdrMonths .rdrMonth:not(.rdrDayPassive) {
+  color: #fff; /* Change month text color */
 }

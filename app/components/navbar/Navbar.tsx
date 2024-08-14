@@ -27,8 +27,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
   return (
-    <div className="fixed w-full z-10 shadow-sm dark:bg-zinc-900">
-      <div className="py-4 border-b-[1px] dark:border-zinc-700 dark:bg-zinc-900">
+    <div className="fixed w-full z-10 shadow-sm bg-neutral-50 dark:bg-zinc-900">
+      <div className="py-4 border-b-[1px] bg-neutral-50 dark:border-zinc-700 dark:bg-zinc-900">
         <Container>
           <div
             className="
@@ -38,14 +38,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             justify-between
             gap-3
             md:gap-0
-          bg-white
+          bg-neutral-50
           dark:bg-zinc-900
             
           "
           >
             <Logo />
             <Search />
-         {/*    <DarkModeBtn /> */}
+            <DarkModeBtn />
             <Menu currentUser={currentUser} />
             
           </div>

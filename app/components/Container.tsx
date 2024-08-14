@@ -10,6 +10,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
     <div
       className="
     max-w-[2520px]
+    max-h-full
     mx-auto
     xl:px-20
     md:px-10

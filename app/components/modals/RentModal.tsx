@@ -249,7 +249,7 @@ function RentModal() {
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title="Rent your Home!"
+      title="Rent your House!"
       body={bodyContent}
     />
   );

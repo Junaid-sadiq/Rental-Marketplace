@@ -8,12 +8,15 @@ interface CalnderProps {
     value: Range;
     onChange: (value: RangeKeyDict) => void;
     disabledDates?: Date[];
+    theme: 'light' | 'dark';
 }
 const Calender: React.FC<CalnderProps> = ({
     value,
     onChange,
-    disabledDates
+    disabledDates,
+    theme
 }) => {
+    const rangeColor = theme === 'dark' ? '#262626' : '#fff';
     return (
         <DateRange
             rangeColors={['#262626']}

@@ -14,6 +14,7 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import useRentModal from '@/app/hooks/useRentModal';
 import { SafeUser } from '@/app/types';
 import DarkModeBtn from '../DarkModeBtn';
+import { useRouter } from 'next/navigation';
 
 interface MenuProps {
   currentUser?: SafeUser | null;
@@ -25,6 +26,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -77,13 +79,14 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           py-3 
           px-4 
           rounded-full 
-          hover:bg-neutral-100 
-          dark:hover:bg-zinc-800
+          hover:bg-neutral-50 
           dark:text-gray-300
-          dark:hover:text-zinc-50
           border-[1px]
           dark:border-zinc-700
-          dark:hover:border-none
+          dark:hover:bg-zinc-800
+          shadow-sm
+          hover:shadow-md
+         /*  dark:hover:border-none */
           transition
           duration-100
           cursor-pointer
@@ -144,12 +147,12 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem label="My trips" onClick={onClickMenuItem} />
+                <MenuItem label="My trips" onClick={()=> router.push('/trips')} />
                 <MenuItem label="My favorites" onClick={onClickMenuItem} />
                 <MenuItem label="My reservations" onClick={onClickMenuItem} />
                 <MenuItem label="My properties" onClick={onClickMenuItem} />
                 <MenuItem
-                  label="Rent your home"
+                  label="Rent your house"
                   onClick={() => rentModal.onOpen()}
                 />
                 <div className="mx-4 border-b-2 dark:border-zinc-700"></div>

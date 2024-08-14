@@ -1,42 +1,35 @@
-'use client'
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import { BsMoonStarsFill, BsFillSunFill, BsLightbulb, BsFillLightbulbFill, BsLightbulbOff } from 'react-icons/bs';
+'use client';
 
-const DarkModeBtn = () => {
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+const Logo = () => {
+  const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { systemTheme, theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) return null; // Avoid rendering until the theme is resolved
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
-  const isDarkMode = currentTheme === 'dark';
-
-  const handleThemeToggle = () => {
-    const newTheme = isDarkMode ? 'light' : 'dark';
-    setTheme(newTheme);
-  };
+  const logoSrc = currentTheme === 'dark' ? '/images/dark.png' : '/images/light.png';
 
   return (
-    <div
-      className={`relative flex items-center justify-between p-2 rounded-full cursor-pointer ${
-        isDarkMode ? 'bg-blue-300 text-blue-900' : 'bg-yellow-100 text-yellow-900'
-      }`}
-      onClick={handleThemeToggle}
-    >
-      <div className="z-10">
-        {isDarkMode ? (
-          <BsMoonStarsFill size={18} />
-        ) : (
-          <BsFillSunFill size={22} />
-        )}
-      </div>
-    </div>
+    <Link href='/'>
+      <Image
+        alt='Logo'
+        className='hidden md:block cursor-pointer w-auto h-auto'
+        height={100}
+        width={100}
+        src={logoSrc}
+        priority={true}
+      />
+    </Link>
   );
-};
+}
 
-export default DarkModeBtn;
+export default Logo;

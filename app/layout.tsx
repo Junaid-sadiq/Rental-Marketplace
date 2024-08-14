@@ -9,7 +9,7 @@ import LoginModal from "./components/modals/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "./components/modals/RentModal";
 import Provider from './hooks/Provider';
-
+import Footer from "./components/Footer";
 export const metadata = {
   title: "Realtor",
   description: "Realtor: unified place to find the best rentals in your area",
@@ -35,6 +35,7 @@ export default async function RootLayout({
           <RentModal/>
           <Navbar currentUser={currentUser} />
           <div className="pb-20 pt-28">{children}</div>
+          {/* <Footer currentUser={currentUser} /> */}
         </ClientOnly>
         </Provider>
       </body>
