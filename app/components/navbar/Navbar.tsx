@@ -45,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           >
             <Logo />
             <Search />
-            <DarkModeBtn />
+         {/*    <DarkModeBtn /> */}
             <Menu currentUser={currentUser} />
             
           </div>

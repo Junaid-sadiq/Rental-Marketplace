@@ -49,14 +49,9 @@ const Search = () => {
     return 'Add Guests';
   }, [guestCount]);
 
-  const handleSearchClick = () => {
-    console.log('Search bar clicked');
-    searchModal.onOpen();
-  };
-
   return (
     <div
-      onClick={handleSearchClick}
+      onClick={searchModal.onOpen}
       className="
     border-[1px] 
     w-full 

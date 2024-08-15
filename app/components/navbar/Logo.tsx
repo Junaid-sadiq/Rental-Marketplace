@@ -1,30 +1,22 @@
 'use client';
 
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Logo = () => {
-  const { theme, systemTheme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
-
-  // Debug: Log the current theme
-  console.log('Current Theme:', currentTheme);
-
-  const logoSrc = currentTheme === 'dark' ? '/images/dark.png' : '/images/light.png';
-
+  const router = useRouter();
   return (
-    <Link href='/'>
+    <div>
       <Image
-        alt='Logo'
-        className='hidden md:block cursor-pointer'
-        height={100}
-        width={100}
-        src={"/images/dark.png"}
-        priority={true}
+        onClick={() => router.push('/')}
+        src="/images/dark.png"
+        alt="logo"
+        className="hidden md:block cursor-pointer"
+        height="100"
+        width="100"
       />
-    </Link>
+    </div>
   );
-}
+};
 
 export default Logo;

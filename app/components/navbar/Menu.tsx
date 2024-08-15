@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState, useEffect, useRef } from 'react';
-import { User } from '@prisma/client';
 import { CiMenuFries } from 'react-icons/ci';
 import { signOut } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
@@ -28,19 +27,15 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const rentModal = useRentModal();
   const router = useRouter();
 
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
-  
+
     document.addEventListener('click', handleClickOutside);
-  
+
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
@@ -124,7 +119,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             )}
           </div>
         </div>
-        <DarkModeBtn />
+       {/*  <DarkModeBtn /> */}
       </div>
 
       {isOpen && (
@@ -147,14 +142,27 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem label="My trips" onClick={()=> router.push('/trips')} />
-                <MenuItem label="My favorites" onClick={onClickMenuItem} />
-                <MenuItem label="My reservations" onClick={onClickMenuItem} />
-                <MenuItem label="My properties" onClick={onClickMenuItem} />
+                <MenuItem
+                  label="My trips"
+                  onClick={() => router.push('/trips')}
+                />
+                <MenuItem
+                  label="My favorites"
+                  onClick={() => router.push('/favorites')}
+                />
+                <MenuItem
+                  label="My reservations"
+                  onClick={() => router.push('/reservations')}
+                />
+                <MenuItem
+                  label="My properties"
+                  onClick={() => router.push('/properties')}
+                />
                 <MenuItem
                   label="Rent your house"
                   onClick={() => rentModal.onOpen()}
                 />
+
                 <div className="mx-4 border-b-2 dark:border-zinc-700"></div>
                 {/*    <hr /> */}
                 <MenuItem label="Log out" onClick={logOut} />
