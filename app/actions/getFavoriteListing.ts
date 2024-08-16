@@ -3,7 +3,7 @@ import getCurrentUser from './getCurrentUser';
 
 export default async function getFavoriteListings() {
   try {
-    const currentUser: { favoriteIds?: number[] } = await getCurrentUser();
+    const currentUser = await getCurrentUser();
 
     if (!currentUser) {
       return [];

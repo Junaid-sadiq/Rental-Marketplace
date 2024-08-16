@@ -1,21 +1,21 @@
 'use client';
-import { useMemo, useState } from 'react';
-import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
 
-import Modal from './Modal';
+import { useMemo, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+
 import useRentModal from '@/app/hooks/useRentModal';
+import Modal from './Modal';
 import Heading from '../Heading';
-import CategoryInput from '../inputs/CategoryInput';
 import { categories } from '../navbar/Categories';
+import CategoryInput from '../inputs/CategoryInput';
 import CountrySelect from '../inputs/CountrySelect';
-import Map from '../Map';
 import dynamic from 'next/dynamic';
 import Counter from '../inputs/Counter';
 import ImageUpload from '../inputs/ImageUpload';
 import Input from '../inputs/Input';
-import axios, { Axios } from 'axios';
-import { toast } from 'react-hot-toast';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 enum STEPS {
   CATEGORY = 0,
@@ -25,10 +25,12 @@ enum STEPS {
   DESCRIPTION = 4,
   PRICE = 5,
 }
-function RentModal() {
-  const rentModal = useRentModal();
+
+const RendModal = () => {
   const router = useRouter();
-  const [step, setStep] = useState(STEPS.CATEGORY);
+  const rendModal = useRentModal();
+
+  const [step, setstep] = useState(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -52,8 +54,8 @@ function RentModal() {
     },
   });
 
-  const location = watch('location');
   const category = watch('category');
+  const location = watch('location');
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
@@ -64,21 +66,23 @@ function RentModal() {
       dynamic(() => import('../Map'), {
         ssr: false,
       }),
-    [location],
+    [location]
   );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
+      shouldValidate: true,
       shouldDirty: true,
       shouldTouch: true,
-      shouldValidate: true,
     });
   };
+
   const onBack = () => {
-    setStep((value) => value - 1);
+    setstep((value) => value - 1);
   };
+
   const onNext = () => {
-    setStep((value) => value + 1);
+    setstep((value) => value + 1);
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -91,14 +95,14 @@ function RentModal() {
     axios
       .post('/api/listings', data)
       .then(() => {
+        toast.success('Listing created!');
         router.refresh();
-        toast.success('Successfully created listing 🎊');
         reset();
-        setStep(STEPS.CATEGORY);
-        rentModal.onClose();
+        setstep(STEPS.CATEGORY);
+        rendModal.onClose();
       })
       .catch(() => {
-        toast.error('Something went wrong.');
+        toast.error('Something went wrong!');
       })
       .finally(() => {
         setIsLoading(false);
@@ -109,6 +113,7 @@ function RentModal() {
     if (step === STEPS.PRICE) {
       return 'Create';
     }
+
     return 'Next';
   }, [step]);
 
@@ -116,14 +121,15 @@ function RentModal() {
     if (step === STEPS.CATEGORY) {
       return undefined;
     }
+
     return 'Back';
   }, [step]);
 
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading
-        title="Which of these best describe your place"
-        subtitle="Pick a category"
+        title="Which of these best describe your place?"
+        subTitle="Pick a category"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {categories.map((item) => (
@@ -144,8 +150,8 @@ function RentModal() {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Where is your place located"
-          subtitle="select your location"
+          title="Where is your place located?"
+          subTitle="Help guests find you!"
         />
         <CountrySelect
           value={location}
@@ -160,42 +166,43 @@ function RentModal() {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Share some basics about your place"
-          subtitle="What amenitis do you have?"
+          title="Share some basics about you place"
+          subTitle="What amenities do you have?"
         />
         <Counter
-          onChange={(value) => setCustomValue('guestCount', value)}
-          value={guestCount}
           title="Guests"
           subtitle="How many guests do you allow?"
+          value={guestCount}
+          onChange={(value) => setCustomValue('guestCount', value)}
         />
         <hr />
         <Counter
-          onChange={(value) => setCustomValue('roomCount', value)}
-          value={roomCount}
           title="Rooms"
           subtitle="How many rooms do you have?"
+          value={roomCount}
+          onChange={(value) => setCustomValue('roomCount', value)}
         />
         <hr />
         <Counter
-          onChange={(value) => setCustomValue('bathroomCount', value)}
-          value={bathroomCount}
           title="Bathrooms"
           subtitle="How many bathrooms do you have?"
+          value={bathroomCount}
+          onChange={(value) => setCustomValue('bathroomCount', value)}
         />
       </div>
     );
   }
+
   if (step === STEPS.IMAGES) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
           title="Add a photo of your place"
-          subtitle="Show the potential buyers or renters how your place looks like"
+          subTitle="Show guest what your place looks like!"
         />
         <ImageUpload
-          onChange={(value) => setCustomValue('imageSrc', value)}
           value={imageSrc}
+          onChange={(value) => setCustomValue('imageSrc', value)}
         />
       </div>
     );
@@ -203,10 +210,10 @@ function RentModal() {
 
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-8">
         <Heading
-          title="Describe your place"
-          subtitle="Short and sweet description of your place"
+          title="How would you describe you place?"
+          subTitle="Short and sweet works best!"
         />
         <Input
           id="title"
@@ -216,22 +223,10 @@ function RentModal() {
           errors={errors}
           required
         />
-        <div className="border-b-[1px] border-neutral-800 dark:border-neutral-200"></div>
-      </div>
-    );
-  }
-  if (step === STEPS.PRICE) {
-    bodyContent = (
-      <div className="flex flex-col gap-8">
-        <Heading
-          title="Now, set your price"
-          subtitle="How much do you want to charge for your place?"
-        />
+        <hr />
         <Input
-          id="price"
-          label="Price"
-          formatPrice
-          type="number"
+          id="description"
+          label="Description"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -241,18 +236,38 @@ function RentModal() {
     );
   }
 
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Now, set your price"
+          subTitle="How much do you charge per night?"
+        />
+        <Input
+          id="price"
+          label="Price"
+          formatPrice={true}
+          type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
   return (
     <Modal
-      isOpen={rentModal.isOpen}
-      onClose={rentModal.onClose}
+      isOpen={rendModal.isOpen}
+      onClose={rendModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title="Rent your House!"
+      title="Rent you home!"
       body={bodyContent}
     />
   );
-}
+};
 
-export default RentModal;
+export default RendModal;

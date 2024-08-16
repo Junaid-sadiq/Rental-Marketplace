@@ -1,19 +1,24 @@
 'use client';
-import { TbBeach, TbBuildingCastle, TbMountain, TbWindmill } from 'react-icons/tb';
+
+import Container from '../Container';
+
+import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import {
   GiBarn,
   GiBoatFishing,
   GiCactus,
+  GiCastle,
+  GiCaveEntrance,
   GiForestCamp,
   GiIsland,
-  GiMountainCave,
-
+  GiWindmill,
 } from 'react-icons/gi';
 import { FaSkiing } from 'react-icons/fa';
 import { BsSnow } from 'react-icons/bs';
-import { MdOutlinePool, MdOutlineVilla } from 'react-icons/md';
-import { BiDiamond } from 'react-icons/bi';
-
+import { IoDiamond } from 'react-icons/io5';
+import { MdOutlineVilla } from 'react-icons/md';
+import CategoryBox from '../CategoryBox';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export const categories = [
   {
@@ -23,7 +28,7 @@ export const categories = [
   },
   {
     label: 'Windmills',
-    icon: TbWindmill,
+    icon: GiWindmill,
     description: 'This property is has windmills!',
   },
   {
@@ -38,7 +43,7 @@ export const categories = [
   },
   {
     label: 'Pools',
-    icon: MdOutlinePool,
+    icon: TbPool,
     description: 'This is property has a beautiful pool!',
   },
   {
@@ -58,12 +63,12 @@ export const categories = [
   },
   {
     label: 'Castles',
-    icon: TbBuildingCastle,
+    icon: GiCastle,
     description: 'This property is an ancient castle!',
   },
   {
     label: 'Caves',
-    icon: GiMountainCave,
+    icon: GiCaveEntrance,
     description: 'This property is in a spooky cave!',
   },
   {
@@ -88,45 +93,38 @@ export const categories = [
   },
   {
     label: 'Lux',
-    icon: BiDiamond,
+    icon: IoDiamond,
     description: 'This property is brand new and luxurious!',
   },
 ];
 
-import Container from '../Container';
-import CategoryBox from './CategoryBox';
-import { usePathname, useSearchParams } from 'next/navigation';
-
-interface CategoriesProps {}
-
-const Categories: React.FC<CategoriesProps> = () => {
+const Categories = () => {
   const params = useSearchParams();
-  const categroy = params?.get('category');
+  const category = params?.get('category');
   const pathname = usePathname();
 
-  const isMain = pathname === '/';
-  if (!isMain) {
+  const isMainPage = pathname === '/';
+
+  if (!isMainPage) {
     return null;
   }
   return (
     <Container>
       <div
-        className={`   
-          pt-4
-          flex 
-          flex-row 
-          items-center 
-          justify-between
-          overflow-x-auto
-          dark:bg-zinc-900
-  `}
+        className="
+      pt-4 
+      flex 
+      flex-row 
+      items-center 
+      justify-between 
+      overflow-x-auto"
       >
         {categories.map((item) => (
           <CategoryBox
             key={item.label}
             label={item.label}
+            selected={category === item.label}
             icon={item.icon}
-            selected={categroy === item.label}
           />
         ))}
       </div>

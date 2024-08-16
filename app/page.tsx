@@ -1,45 +1,56 @@
-import getCurrentUser from "./actions/getCurrentUser";
-import getListings from "./actions/getListings";
-import ClientOnly from "./components/ClientOnly";
-import Container from "./components/Container";
-import EmptyState from "./components/EmptyState";
-import ListingCard from "./components/listings/ListingCard";
+export const dynamic = 'force-dynamic';
 
+import getCurrentUser from './actions/getCurrentUser';
+import getListings, { IListingParams } from './actions/getListings';
 
-export default async function Home() {
-  const listings = await getListings()
+import ClientOnly from './components/ClientOnly';
+import Container from './components/Container';
+import EmptyState from './components/EmptyState';
+import ListingCard from './components/listings/ListingCard';
+
+interface HomeProps {
+  searchParams: IListingParams;
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
+
   if (listings.length === 0) {
     return (
       <ClientOnly>
-        <EmptyState showReset/>
+        <EmptyState showReset />
       </ClientOnly>
-    )
+    );
   }
+
   return (
-     <ClientOnly>
+    <ClientOnly>
       <Container>
-        <div className="
-                 pt-24
-                 grid 
-                 grid-cols-1 
-                 sm:grid-cols-2 
-                 md:grid-cols-3 
-                 lg:grid-cols-4
-                 xl:grid-cols-5
-                 2xl:grid-cols-6
-                 gap-8
-                 dark:bg-black
-        ">
-           {listings.map((listing) => (
-            <ListingCard
-              currentUser={currentUser}
-              key={listing.id}
-              data={listing}
-            />
-          ))}
+        <div
+          className="
+        pt-24
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        md:grid-cols-3
+        lg:grid-cols-4
+        xl:grid-cols-5
+        2xl:grid-cols-6
+        gap-8"
+        >
+          {listings.map((listing) => {
+            return (
+              <ListingCard
+                currentUser={currentUser}
+                key={listing.id}
+                data={listing}
+              />
+            );
+          })}
         </div>
       </Container>
-     </ClientOnly>
-  )
-}
+    </ClientOnly>
+  );
+};
+export default Home;

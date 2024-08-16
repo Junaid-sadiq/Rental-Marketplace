@@ -1,53 +1,25 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import { BsFillMoonStarsFill, BsSun } from 'react-icons/bs';
 
-import { SafeUser } from '@/app/types';
 import Container from '../Container';
-import Logo from './Logo';
-import Menu from './Menu';
-import Search from './Search';
-import ToggleSwitch from '../ToggleSwitch';
 import Categories from './Categories';
-import DarkModeBtn from '../DarkModeBtn';
+import Logo from './Logo';
+import Search from './Search';
+import UserMenu from './UserMenu';
+import { SafeUser } from '@/app/types';
+
 interface NavbarProps {
   currentUser?: SafeUser | null;
 }
+
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-  const currentTheme = theme === 'system' ? systemTheme : theme;
-
   return (
-    <div className="fixed w-full z-10 shadow-sm bg-neutral-50 dark:bg-zinc-900">
-      <div className="py-4 border-b-[1px] bg-neutral-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <div className="fixed w-full bg-white z-10 shadow-sm">
+      <div className="py-4 border-b-[1px]">
         <Container>
-          <div
-            className="
-            flex 
-            flex-row 
-            items-center 
-            justify-between
-            gap-3
-            md:gap-0
-          bg-neutral-50
-          dark:bg-zinc-900
-            
-          "
-          >
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo />
             <Search />
-         {/*    <DarkModeBtn /> */}
-            <Menu currentUser={currentUser} />
-            
+            <UserMenu currentUser={currentUser} />
           </div>
         </Container>
       </div>

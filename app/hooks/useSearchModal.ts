@@ -8,14 +8,8 @@ interface SearchModalStore {
 
 const useSearchModal = create<SearchModalStore>((set) => ({
   isOpen: false,
-  onOpen: () => {
-    console.log('Opening search modal');
-    set({ isOpen: true });
-  },
-  onClose: () => {
-    console.log('Closing search modal');
-    set({ isOpen: false });
-  },
+  onOpen: () => set({ isOpen: true }),
+  onClose: () => set({ isOpen: false }),
 }));
 
 export default useSearchModal;

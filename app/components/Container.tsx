@@ -1,24 +1,14 @@
-//this container is going to be client side to prevent hydration issues
 'use client';
+
+import React from 'react';
 
 interface ContainerProps {
   children: React.ReactNode;
-  className?: string;
 }
+
 const Container: React.FC<ContainerProps> = ({ children }) => {
   return (
-    <div
-      className="
-    max-w-[2520px]
-    max-h-full
-    mx-auto
-    xl:px-20
-    md:px-10
-    sm:px-2
-    px-4
-    dark:bg-zinc-900
-     "
-    >
+    <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
       {children}
     </div>
   );

@@ -1,19 +1,15 @@
-
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getListingById from "@/app/actions/getListingById";
-import getReservations from "@/app/actions/getReservations";
-
-import ClientOnly from "@/app/components/ClientOnly";
-import EmptyState from "@/app/components/EmptyState";
-
-import ListingClient from "./ListingClient";
+import getListingById from '@/app/actions/getListingById';
+import ClientOnly from '@/app/components/ClientOnly';
+import EmptyState from '@/app/components/EmptyState';
+import ListingClient from './ListingClient';
+import getCurrentUser from '@/app/actions/getCurrentUser';
+import getReservations from '@/app/actions/getReservation';
 
 interface IParams {
   listingId?: string;
 }
 
 const ListingPage = async ({ params }: { params: IParams }) => {
-
   const listing = await getListingById(params);
   const reservations = await getReservations(params);
   const currentUser = await getCurrentUser();
@@ -25,7 +21,6 @@ const ListingPage = async ({ params }: { params: IParams }) => {
       </ClientOnly>
     );
   }
-
   return (
     <ClientOnly>
       <ListingClient
@@ -35,6 +30,6 @@ const ListingPage = async ({ params }: { params: IParams }) => {
       />
     </ClientOnly>
   );
-}
- 
+};
+
 export default ListingPage;

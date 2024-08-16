@@ -1,25 +1,25 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-import { AiFillGithub } from 'react-icons/ai';
 import axios from 'axios';
+import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import { signIn } from 'next-auth/react';
-import { toast } from 'react-hot-toast';
+import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
-
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../inputs/Input';
-import Button from '../Button';
+import toast from 'react-hot-toast';
+import { Button } from '../Button';
+import { signIn } from 'next-auth/react';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -31,37 +31,28 @@ const RegisterModal = () => {
       password: '',
     },
   });
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    setIsLoading(true);
-    try {
-      await axios.post('/api/register', data).then(() => {
-        toast.success('Successfully registered 🎊');
-        registerModal.onClose();
-      });
-    } catch (error) {
-      toast.error('Something went wrong');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  const signInWithGoogle = async () => {
-    toast.success('succcessful signed in with Github');
-    registerModal.onClose();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+
+    axios
+      .post('/api/register', data)
+      .then(() => {
+        toast.success('Success!');
+        registerModal.onClose();
+        loginModal.onOpen();
+      })
+      .catch((error) => {
+        toast.error('Something went wrong');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
-  const signInWithGithub = async () => {
-    await signIn('github')
-   /*    .then(() => toast.success('succcessful signed in with Google'))
-      .finally(() => registerModal.onClose()); */
-  };
-  const onToggle = useCallback(() => {
-    registerModal.onClose();
-    loginModal.onOpen();
-  }, [registerModal, loginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to Rentals" center subtitle="Create an account" />
+      <Heading title="Welcome to Rental Marketplace" subTitle="Create an account!" />
       <Input
         id="email"
         label="Email"
@@ -72,7 +63,7 @@ const RegisterModal = () => {
       />
       <Input
         id="name"
-        label="name"
+        label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -80,7 +71,8 @@ const RegisterModal = () => {
       />
       <Input
         id="password"
-        label="Passowrd"
+        label="Password"
+        type="password"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -88,43 +80,37 @@ const RegisterModal = () => {
       />
     </div>
   );
+
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
+
   const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
+    <div className="flex flex-col gap-3 mt-3">
       <hr />
       <Button
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => signIn('google')} 
+        onClick={() => signIn('google')}
       />
       <Button
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={signInWithGithub}
+        onClick={() => signIn('github')}
       />
-      <div
-        className="
-          text-neutral-500 
-          text-center 
-          mt-4 
-          font-light
-        "
-      >
-        <p>
-          Already have an account?
-          <span
-            onClick={onToggle}
-            className="
-              text-neutral-800
-              cursor-pointer 
-              hover:underline
-            "
+      <div className="text-neutral-500 text-center mt-4 font-light">
+        <div className="flex flex-row gap-2 items-center justify-center">
+          <div>Already have an account?</div>
+          <div
+            onClick={toggle}
+            className="text-neutral-800 cursor-pointer hover:underline"
           >
-            {' '}
-            Log in
-          </span>
-        </p>
+            Login
+          </div>
+        </div>
       </div>
     </div>
   );

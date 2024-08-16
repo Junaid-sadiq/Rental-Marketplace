@@ -1,21 +1,24 @@
-import "./globals.css";
-import { Nunito } from "next/font/google";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Nunito } from 'next/font/google';
+import Navbar from './components/navbar/Navbar';
+import ClientOnly from './components/ClientOnly';
+import RegisterModal from './components/modals/RegisterModal';
+import LoginModal from './components/modals/LoginModal';
+import RendModal from './components/modals/RendModal';
+import SearchModal from './components/modals/SearchModal';
 
-import ClientOnly from "./components/ClientOnly";
-import RegisterModal from "./components/modals/RegisterModal";
-import Navbar from "./components/navbar/Navbar";
-import ToasterProvider from "./providers/ToasterProvider";
-import LoginModal from "./components/modals/LoginModal";
-import { getCurrentUser } from "./actions/getCurrentUser";
-import RentModal from "./components/modals/RentModal";
-import Provider from './hooks/Provider';
-import Footer from "./components/Footer";
-export const metadata = {
-  title: "Realtor",
-  description: "Realtor: unified place to find the best rentals in your area",
+import ToasterProvider from '@/app/providers/ToasterProvider';
+import getCurrentUser from './actions/getCurrentUser';
+
+const font = Nunito({
+  subsets: ['latin'],
+});
+
+export const metadata: Metadata = {
+  title: 'Rental Marketplace',
+  description: 'ental Martekplace built with nextjs',
 };
-
-const font = Nunito({ subsets: ["latin"] });
 
 export default async function RootLayout({
   children,
@@ -23,21 +26,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const currentUser = await getCurrentUser();
- 
+
   return (
     <html lang="en">
       <body className={font.className}>
-      <Provider>
         <ClientOnly>
-          <ToasterProvider/>
-          <LoginModal/>
+          <ToasterProvider />
+          <SearchModal />
+          <RendModal />
+          <LoginModal />
           <RegisterModal />
-          <RentModal/>
           <Navbar currentUser={currentUser} />
-          <div className="pb-20 pt-28">{children}</div>
-          {/* <Footer currentUser={currentUser} /> */}
         </ClientOnly>
-        </Provider>
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );
