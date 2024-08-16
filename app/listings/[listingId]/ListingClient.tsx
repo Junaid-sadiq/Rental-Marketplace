@@ -7,13 +7,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { toast } from 'react-hot-toast';
 
-import Container from '@/app/components/Container';
-import ListingHead from '@/app/components/listings/ListingHead';
-import ListingInfo from '@/app/components/listings/ListingInfo';
-import { categories } from '@/app/components/navbar/Categories';
-import useLoginModal from '@/app/hooks/useLoginModal';
-import { SafeListing, SafeUser, safeReservation } from '@/app/types';
-import ListingReservation from '@/app/components/listings/ListingReservation';
+import Container from '../../components/Container';
+import ListingHead from '../../components/listings/ListingHead';
+import ListingInfo from '../../components/listings/ListingInfo';
+import { categories } from '../../components/navbar/Categories';
+import useLoginModal from '../../hooks/useLoginModal';
+import { SafeListing, SafeUser, safeReservation } from '../../types';
+import ListingReservation from '../../components/listings/ListingReservation';
 
 const initialDateRange = {
   startDate: new Date(),

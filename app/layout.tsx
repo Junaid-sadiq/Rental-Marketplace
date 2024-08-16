@@ -8,8 +8,8 @@ import LoginModal from './components/modals/LoginModal';
 import RendModal from './components/modals/RendModal';
 import SearchModal from './components/modals/SearchModal';
 
-import ToasterProvider from '@/app/providers/ToasterProvider';
 import getCurrentUser from './actions/getCurrentUser';
+import ToasterProvider from './providers/ToasterProvider';
 
 const font = Nunito({
   subsets: ['latin'],

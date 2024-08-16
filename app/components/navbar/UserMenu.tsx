@@ -6,10 +6,10 @@ import { useCallback, useState } from 'react';
 import { signOut } from 'next-auth/react';
 import MenuItem from './MenuItem';
 
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-import useLoginModal from '@/app/hooks/useLoginModal';
-import useRentModal from '@/app/hooks/useRentModal';
-import { SafeUser } from '@/app/types';
+import useRegisterModal from '../../hooks/useRegisterModal';
+import useLoginModal from '../../hooks/useLoginModal';
+import useRentModal from '../../hooks/useRentModal';
+import { SafeUser } from '../../types';
 import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {

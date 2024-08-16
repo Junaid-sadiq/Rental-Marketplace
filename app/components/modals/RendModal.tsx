@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import useRentModal from '@/app/hooks/useRentModal';
+import useRentModal from '../../hooks/useRentModal';
 import Modal from './Modal';
 import Heading from '../Heading';
 import { categories } from '../navbar/Categories';

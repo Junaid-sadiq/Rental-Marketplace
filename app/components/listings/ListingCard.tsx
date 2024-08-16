@@ -2,13 +2,13 @@
 
 import { useRouter } from 'next/navigation';
 
-import { SafeListing, SafeUser, safeReservation } from '@/app/types';
-import useCountries from '@/app/hooks/useCountries';
+import { SafeListing, SafeUser, safeReservation } from '../../types';
 import { useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import HeartButton from '../HeartButton';
 import { Button } from '../Button';
+import useCountries from '../../hooks/useCountries';
 
 interface LisingCardProps {
   data: SafeListing;

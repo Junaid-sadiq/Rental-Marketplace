@@ -6,7 +6,7 @@ import { Range } from 'react-date-range';
 import qs from 'query-string';
 import { formatISO } from 'date-fns';
 
-import useSearchModal from '@/app/hooks/useSearchModal';
+import useSearchModal from '../../hooks/useSearchModal';
 
 import Heading from '../Heading';
 import Modal from './Modal';
