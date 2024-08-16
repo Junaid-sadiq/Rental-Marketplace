@@ -95,7 +95,7 @@ const ListingCard: React.FC<LisingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-semibold text-lg">
+        <div className="font-semibold text-lg text-gray-800">
           {location?.region}, {location?.label}
         </div>
         <div className="font-light text-neutral-500">
