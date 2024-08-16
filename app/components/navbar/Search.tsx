@@ -89,6 +89,7 @@ const Search = () => {
         px-6
         border-x-[1px]
         flex-1
+        text-gray-6700
         text-center"
         >
           {durationLabel}
